@@ -4,6 +4,8 @@ import 'package:skills_competition_ex/constants/app_colors.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:skills_competition_ex/InitialSettings.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // runApp 전에 호출
@@ -23,6 +25,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const MyIntroPage(),
       theme: ThemeData(scaffoldBackgroundColor: AppColors.background),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate, // 이게 핵심
+      ],
+      supportedLocales: [Locale('ko', 'KR')],
     );
   }
 }
@@ -400,18 +408,4 @@ class BackgroundPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-class InitialSettings extends StatefulWidget {
-  const InitialSettings({super.key});
-
-  @override
-  State<InitialSettings> createState() => _InitialSettingsState();
-}
-
-class _InitialSettingsState extends State<InitialSettings> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Column());
-  }
 }
