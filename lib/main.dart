@@ -6,12 +6,14 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:skills_competition_ex/InitialSettings.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // runApp 전에 호출
+  await dotenv.load(fileName: ".env");
 
   KakaoSdk.init(
-    nativeAppKey: 'd8b4041c5d9a8063489176b8d04387c5', // 카카오 개발자 콘솔에서 복사
+    nativeAppKey: dotenv.env['KAKAO_NATIVE_APP_KEY']!, // 카카오 개발자 콘솔에서 복사
   );
   runApp(const MyApp());
 }
